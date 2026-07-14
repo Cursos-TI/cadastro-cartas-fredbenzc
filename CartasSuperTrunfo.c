@@ -194,41 +194,94 @@ int main()
 		     	}
 	
 	    if (cont == 6)
-	    {
-	    system("cls");
-			if ((super_poder1 > super_poder2) && (densidade_populacao1 < densidade_populacao2 ) && (pib_capita1 > pib_capita2))
-			{
-				printf("\t CARTA 1 VENCEU \n ");
-				printf("\t CARTA 1 %.0f POWER VS CARTA 2 %.0f POWER   ",super_poder1,super_poder2);
-			    }	
-	    	if ((super_poder2 > super_poder1) && (densidade_populacao2 < densidade_populacao1 ) && (pib_capita2 > pib_capita1))
-			{
-				printf("\t CARTA 2 VENCEU \n ");
-				printf("\t CARTA 1 %.0f POWER VS CARTA 2 %.0f POWER   ",super_poder1,super_poder2);
-			    }	
-            
-        	 }
-			
-			
-			if((super_poder1 == super_poder2) && (densidade_populacao1 == densidade_populacao2 ) && (pib_capita1 == pib_capita2)) 
-			{
-				printf("\t EMPATE \n ");
-				printf("\t CARTA 1 %.0f POWER VS CARTA 2 %.0f POWER   ",super_poder1,super_poder2);
-			    }
-			if((super_poder1 == super_poder2) && (densidade_populacao1 < densidade_populacao2 ) && (pib_capita1 > pib_capita2)) 
-			{
-				printf("\t CARTA 1 VENCEU \n ");
-				printf("\t CARTA 1 %.0f POWER VS CARTA 2 %.0f POWER   ",super_poder1,super_poder2);
-			   	}
-			if((super_poder1 == super_poder2) && (densidade_populacao2 < densidade_populacao1 ) && (pib_capita2 > pib_capita1)) 
-			{
-				printf("\t CARTA 2 VENCEU  \n ");
-				printf("\t CARTA 1 %.0f POWER VS CARTA 2 %.0f POWER   ",super_poder1,super_poder2);
-			    system("pause > nul");
-			    }			
-			
-		
-	
+{
+    system("cls");
+    
+    printf("\t--------------------------------------------------\n");
+    printf("\t               RESULTADO DA DISPUTA               \n");
+    printf("\t--------------------------------------------------\n\n");
+
+    // =========================================================================
+    // GRUPO 1: VITÓRIA PELO SUPER PODER (MAIOR VENCE)
+    // =========================================================================
+    
+    // Carta 1 vence no poder e em todos os outros atributos
+    if ((super_poder1 > super_poder2) && (densidade_populacao1 < densidade_populacao2) && (pib_capita1 > pib_capita2))
+    {
+        printf("\t CARTA 1 VENCEU (CONCURSO ABSOLUTO) \n");
+        printf("\t CARTA 1 %.0f POWER VS CARTA 2 %.0f POWER \n", super_poder1, super_poder2);
+    }	
+    
+    // Carta 2 vence no poder e em todos os outros atributos
+    if ((super_poder2 > super_poder1) && (densidade_populacao2 < densidade_populacao1) && (pib_capita2 > pib_capita1))
+    {
+        printf("\t CARTA 2 VENCEU (CONCURSO ABSOLUTO) \n");
+        printf("\t CARTA 1 %.0f POWER VS CARTA 2 %.0f POWER \n", super_poder1, super_poder2);
+    }	
+    
+    // Carta 1 tem mais poder, ganha na densidade, mas perde no PIB (Vence por 2x1)
+    if ((super_poder1 > super_poder2) && (densidade_populacao1 < densidade_populacao2) && (pib_capita1 < pib_capita2))
+    {
+        printf("\t CARTA 1 VENCEU (MAIORIA DOS ATRIBUTOS) \n");
+        printf("\t CARTA 1 %.0f POWER VS CARTA 2 %.0f POWER \n", super_poder1, super_poder2);
+    }	
+    
+    // Carta 2 tem mais poder, ganha na densidade, mas perde no PIB (Vence por 2x1)
+    if ((super_poder2 > super_poder1) && (densidade_populacao2 < densidade_populacao1) && (pib_capita2 < pib_capita1))
+    {
+        printf("\t CARTA 2 VENCEU (MAIORIA DOS ATRIBUTOS) \n");
+        printf("\t CARTA 1 %.0f POWER VS CARTA 2 %.0f POWER \n", super_poder1, super_poder2);
+    }	
+
+    // =========================================================================
+    // GRUPO 2: CONFLITOS (QUANDO O PODER É MENOR, MAS GANHA EM OUTROS)
+    // =========================================================================
+    
+    // Carta 1 tem MENOS poder, mas ganha na Densidade e no PIB (Vence por 2x1 nos atributos)
+    if ((super_poder1 < super_poder2) && (densidade_populacao1 < densidade_populacao2) && (pib_capita1 > pib_capita2))
+    {
+        printf("\t CARTA 1 VENCEU (GANHOU EM DENSIDADE E PIB) \n");
+        printf("\t CARTA 1: %.2f hab/Km VS CARTA 2: %.2f hab/Km \n", densidade_populacao1, densidade_populacao2);
+        printf("\t CARTA 1: R$ %.2f VS CARTA 2: R$ %.2f \n", pib_capita1, pib_capita2);
+    }	
+
+    // Carta 2 tem MENOS poder, mas ganha na Densidade e no PIB (Vence por 2x1 nos atributos)
+    if ((super_poder2 < super_poder1) && (densidade_populacao2 < densidade_populacao1) && (pib_capita2 > pib_capita1))
+    {
+        printf("\t CARTA 2 VENCEU (GANHOU EM DENSIDADE E PIB) \n");
+        printf("\t CARTA 2: %.2f hab/Km VS CARTA 1: %.2f hab/Km \n", densidade_populacao2, densidade_populacao1);
+        printf("\t CARTA 2: R$ %.2f VS CARTA 1: R$ %.2f \n", pib_capita2, pib_capita1);
+    }
+
+    // =========================================================================
+    // GRUPO 3: CASOS DE IGUALDADE (EMPATES E DESEMPATES)
+    // =========================================================================
+    
+    // Empate absoluto (Tudo perfeitamente igual)
+    if ((super_poder1 == super_poder2) && (densidade_populacao1 == densidade_populacao2) && (pib_capita1 == pib_capita2)) 
+    {
+        printf("\t EMPATE TOTAL \n");
+        printf("\t CARTA 1 %.0f POWER VS CARTA 2 %.0f POWER \n", super_poder1, super_poder2);
+    }
+    
+    // Empate no poder, mas Carta 1 desempata ganhando na densidade e no PIB
+    if ((super_poder1 == super_poder2) && (densidade_populacao1 < densidade_populacao2) && (pib_capita1 > pib_capita2)) 
+    {
+        printf("\t CARTA 1 VENCEU (CRITÉRIO DE DESEMPATE) \n");
+        printf("\t CARTA 1 %.0f POWER VS CARTA 2 %.0f POWER \n", super_poder1, super_poder2);
+    }
+    
+    // Empate no poder, mas Carta 2 desempata ganhando na densidade e no PIB
+    if ((super_poder1 == super_poder2) && (densidade_populacao2 < densidade_populacao1) && (pib_capita2 > pib_capita1)) 
+    {
+        printf("\t CARTA 2 VENCEU (CRITÉRIO DE DESEMPATE) \n");
+        printf("\t CARTA 1 %.0f POWER VS CARTA 2 %.0f POWER \n", super_poder1, super_poder2);
+    }			
+    
+    printf("\n\t--------------------------------------------------\n");
+    system("pause > nul"); // Segura o resultado na tela de forma limpa
+}
+
 	system("pause >nul");
 	}
 	
