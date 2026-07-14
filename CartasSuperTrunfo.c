@@ -12,7 +12,7 @@ int main()
     
     char estado1, estado2, codigo1[4], codigo2[4], cidade1[30], cidade2[30];
     int populacao1 = 0, populacao2 = 0, num_ponto_turistico1 = 0, num_ponto_turistico2 = 0;
-    float area1 = 0, area2 = 0, pib1 = 0, pib2 = 0;
+    float area1 = 0, area2 = 0, pib1 = 0, pib2 = 0, densidade_populacao1 = 0, densidade_populacao2 = 0, pib_capita1 = 0, pib_capita2 = 0, super_poder1 = 0, super_poder2 = 0 ;
     
     // Inicializando as strings para evitar lixo de memória na tela
     cidade1[0] = '\0'; cidade2[0] = '\0';
@@ -32,9 +32,11 @@ int main()
         printf(" °  2- MOSTRAR CARTA 1                                                    ° \n");
         printf(" °  3- MOSTRAR CARTA 2                                                    ° \n");
         printf(" °  4- MOSTRAR TODAS CARTAS                                               ° \n");
+        printf(" °  5- NOVAS HABILIDADES                                                  ° \n");
+        printf(" °  6- COMPARAR CARTAS                                                    ° \n");
         printf(" °                                                                        ° \n");
-        printf(" °  6- SAIR                                                               ° \n");
-        printf(" °°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°  \n\n");     
+        printf(" °  9- SAIR                                                               ° \n");
+        printf(" °°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°° \n\n");     
         printf("   \\> ");
         scanf("%d", &cont);
          
@@ -86,51 +88,150 @@ int main()
             
             printf(" Digite a Qts de pontos turisticos da cidade 2 => ");
             scanf("%d", &num_ponto_turistico2);
-        }   
+            
+          // - - Calculos - -
+		  densidade_populacao1 = populacao1 / area1;
+          densidade_populacao2 = populacao2 / area2;
+		  pib_capita1 = pib1 / populacao1;		
+          pib_capita2 = pib2 / populacao2;	
+          super_poder1 = populacao1 + area1 + pib1 + num_ponto_turistico1;
+          super_poder2 = populacao2 + area2 + pib2 + num_ponto_turistico2;  
+		
+		}   
         
         if (cont == 2)
         {
+            
             system("cls");
-            printf("\t CARTA 1 \n");
-            printf("\t Estado : %c \n", estado1);
-            printf("\t Codigo : %c%s \n", estado1, codigo1);
-            printf("\t Nome da Cidade : %s \n", cidade1);
-            printf("\t Populacao : %d \n", populacao1);
-            printf("\t Area : %.2f Km \n", area1);
-            printf("\t PIB : %.2f \n", pib1);
-            printf("\t Pontos Turistico : %d \n", num_ponto_turistico1);
-            system("pause > nul"); 
-        }       
+            // --- CARTA 1 ---
+		    printf("\t               ====================================\n");
+            printf("\t                          CARTA 1 \n");
+            printf("\t               ====================================\n");
+		    printf("\t                Estado : %c           \n", estado1);
+            printf("\t                Codigo : %c%s         \n", estado1, codigo1);
+            printf("\t                Nome da Cidade : %s   \n", cidade1);
+            printf("\t                Populacao : %d        \n", populacao1);
+            printf("\t                Area : %.2f Km        \n", area1);
+            printf("\t                PIB : %.2f            \n", pib1);
+            printf("\t                Pontos Turistico : %d  \n\n\n", num_ponto_turistico1);
+              }       
         
         if (cont == 3)
         {
+            // --- CARTA 2 ---    
             system("cls");
-            printf("\t CARTA 2 \n");
-            printf("\t Estado : %c \n", estado2);
-            printf("\t Codigo : %c%s \n", estado2, codigo2);
-            printf("\t Nome da Cidade : %s \n", cidade2);
-            printf("\t Populacao : %d \n", populacao2);
-            printf("\t Area : %.2f Km \n", area2);
-            printf("\t PIB : %.2f \n", pib2);
-            printf("\t Pontos Turistico : %d \n", num_ponto_turistico2);
-            system("pause > nul");     
-        }           
+			printf("\t               ====================================\n");
+            printf("\t                          CARTA 2 \n");
+            printf("\t               ====================================\n");
+            printf("\t                Estado : %c         \n",  estado2);
+            printf("\t                Codigo : %c%s        \n", estado2, codigo2);
+            printf("\t                Nome da Cidade : %s   \n", cidade2);
+            printf("\t                Populacao : %d        \n", populacao2);
+            printf("\t                Area : %.2f Km        \n", area2);
+            printf("\t                PIB : %.2f             \n",pib2);
+            printf("\t                Pontos Turistico : %d \n", num_ponto_turistico2);
+		      }           
          
         if (cont == 4)
         {
-            system("cls");
-            printf("\t               CARTA 1                                CARTA 2 \n\n");
-            printf("\t                Estado : %c                            Estado : %c          \n", estado1, estado2);
-            printf("\t                Codigo : %c%s                          Codigo : %c%s         \n", estado1, codigo1, estado2, codigo2);
-            printf("\t                Nome da Cidade : %s                    Nome da Cidade : %s    \n", cidade1, cidade2);
-            printf("\t                Populacao : %d                         Populacao : %d         \n", populacao1, populacao2);
-            printf("\t                Area : %.2f Km                         Area : %.2f Km          \n", area1, area2);
-            printf("\t                PIB : %.2f                             PIB  : %.2f              \n", pib1, pib2);
-            printf("\t                Pontos Turistico : %d                  Pontos Turistico : %d     \n", num_ponto_turistico1, num_ponto_turistico2);
-            system("pause > nul");      
-        }
+            // --- CARTA 1 ---
+			system("cls");
+			printf("\t               ====================================\n");
+            printf("\t                          CARTA 1 \n");
+            printf("\t               ====================================\n");
+            printf("\t                Estado : %c           \n", estado1);
+            printf("\t                Codigo : %c%s         \n", estado1, codigo1);
+            printf("\t                Nome da Cidade : %s   \n", cidade1);
+            printf("\t                Populacao : %d        \n", populacao1);
+            printf("\t                Area : %.2f Km        \n", area1);
+            printf("\t                PIB : %.2f            \n", pib1);
+            printf("\t                Pontos Turistico : %d  \n\n\n", num_ponto_turistico1);
+            // --- CARTA 2 ---    
+            printf("\t               ====================================\n");
+            printf("\t                          CARTA 2 \n");
+            printf("\t               ====================================\n");
+            printf("\t                Estado : %c         \n",  estado2);
+            printf("\t                Codigo : %c%s        \n", estado2, codigo2);
+            printf("\t                Nome da Cidade : %s   \n", cidade2);
+            printf("\t                Populacao : %d        \n", populacao2);
+            printf("\t                Area : %.2f Km        \n", area2);
+            printf("\t                PIB : %.2f             \n",pib2);
+            printf("\t                Pontos Turistico : %d \n", num_ponto_turistico2);
+			}
                 
-    } while(cont != 6);    
-    
-    return 0;
+        if (cont == 5)
+        {
+          system("cls");
+		            
+          // --- CARTA 1 ---
+		    printf("\t               ====================================\n");
+            printf("\t                          CARTA 1 \n");
+            printf("\t               ====================================\n");
+            printf("\t                Super Poder : %.0f POWER      \n",super_poder1);
+			printf("\t                Estado : %c           \n", estado1);
+            printf("\t                Codigo : %c%s         \n", estado1, codigo1);
+            printf("\t                Nome da Cidade : %s   \n", cidade1);
+            printf("\t                Populacao : %d        \n", populacao1);
+            printf("\t                Area : %.2f Km        \n", area1);
+            printf("\t                PIB : %.2f            \n", pib1);
+            printf("\t                Pontos Turistico : %d \n", num_ponto_turistico1);
+            printf("\t                Densidade populacional : %.2f \n",densidade_populacao1);
+			printf("\t                PIP Per Capita : %.2f  \n\n\n",pib_capita1);   
+            // --- CARTA 2 ---     
+            printf("\t               ====================================\n");
+            printf("\t                          CARTA 2 \n");
+            printf("\t               ====================================\n");
+            printf("\t                Super Poder : %.0f POWER      \n",super_poder2);
+			printf("\t                Estado : %c         \n",  estado2);
+            printf("\t                Codigo : %c%s        \n", estado2, codigo2);
+            printf("\t                Nome da Cidade : %s   \n", cidade2);
+            printf("\t                Populacao : %d        \n", populacao2);
+            printf("\t                Area : %.2f Km        \n", area2);
+            printf("\t                PIB : %.2f             \n",pib2);
+            printf("\t                Pontos Turistico : %d \n", num_ponto_turistico2);
+		    printf("\t                Densidade populacional : %.2f \n",densidade_populacao2);
+			printf("\t                PIP Per Capita : %.2f  \n",pib_capita2);
+		     	}
+	
+	    if (cont == 6)
+	    {
+	    system("cls");
+			if ((super_poder1 > super_poder2) && (densidade_populacao1 < densidade_populacao2 ) && (pib_capita1 > pib_capita2))
+			{
+				printf("\t CARTA 1 VENCEU \n ");
+				printf("\t CARTA 1 %.0f POWER VS CARTA 2 %.0f POWER   ",super_poder1,super_poder2);
+			    }	
+	    	if ((super_poder2 > super_poder1) && (densidade_populacao2 < densidade_populacao1 ) && (pib_capita2 > pib_capita1))
+			{
+				printf("\t CARTA 2 VENCEU \n ");
+				printf("\t CARTA 1 %.0f POWER VS CARTA 2 %.0f POWER   ",super_poder1,super_poder2);
+			    }	
+            
+        	 }
+			
+			
+			if((super_poder1 == super_poder2) && (densidade_populacao1 == densidade_populacao2 ) && (pib_capita1 == pib_capita2)) 
+			{
+				printf("\t EMPATE \n ");
+				printf("\t CARTA 1 %.0f POWER VS CARTA 2 %.0f POWER   ",super_poder1,super_poder2);
+			    }
+			if((super_poder1 == super_poder2) && (densidade_populacao1 < densidade_populacao2 ) && (pib_capita1 > pib_capita2)) 
+			{
+				printf("\t CARTA 1 VENCEU \n ");
+				printf("\t CARTA 1 %.0f POWER VS CARTA 2 %.0f POWER   ",super_poder1,super_poder2);
+			   	}
+			if((super_poder1 == super_poder2) && (densidade_populacao2 < densidade_populacao1 ) && (pib_capita2 > pib_capita1)) 
+			{
+				printf("\t CARTA 2 VENCEU  \n ");
+				printf("\t CARTA 1 %.0f POWER VS CARTA 2 %.0f POWER   ",super_poder1,super_poder2);
+			    system("pause > nul");
+			    }			
+			
+		
+	
+	system("pause >nul");
+	}
+	
+	while(cont != 9);    
+ return 0;
 }
